@@ -25,6 +25,12 @@ st.image("https://yt3.googleusercontent.com/K-3bx-q3srYXlCBGGqEMdSeHv2LfWTO_cxhf
 st.markdown(
     """
    <style>
+         /* 전체 배경색 설정 */
+        .main {
+            background-color: #f4faff; /* 밝은 파스텔 블루 */
+            padding: 20px;
+        }        
+        
         .title {
             text-align: center;
             font-family: Arial, sans-serif;
