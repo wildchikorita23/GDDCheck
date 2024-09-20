@@ -200,8 +200,7 @@ if uploaded_file is not None:
                     scores = [8, 7, 9, 6, 7, 8, 9, 6, 8, 7]  # 이 부분은 실제 결과에 따라 조정 필요
                     total_score = sum(scores)
                     
-                    # 시각화
-                    st.write(f"**총합 점수: {total_score} / 100**")
+                    
                     
 
                 # 최신 예외 처리 방식 적용
