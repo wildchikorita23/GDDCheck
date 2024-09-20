@@ -78,7 +78,7 @@ if password == "I'minthestars":  # 여기에 원하는 비밀번호를 설정하
                 st.write(f"**평가 {idx}:**")
                 st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
                 st.write(f"**평가 내용:** {feedback['evaluation']}")
-               # PDF 파일 다운로드 링크 제공
+              # PDF 파일 다운로드 링크 제공 (고유한 key 추가)
                 pdf_path = feedback.get('pdf_path', None)
                 if pdf_path and os.path.exists(pdf_path):
                     with open(pdf_path, "rb") as pdf_file:
@@ -86,7 +86,8 @@ if password == "I'minthestars":  # 여기에 원하는 비밀번호를 설정하
                             label=f"PDF 다운로드 ({os.path.basename(pdf_path)})",
                             data=pdf_file,
                             file_name=os.path.basename(pdf_path),
-                            mime='application/pdf'
+                            mime='application/pdf',
+                            key=f"download_{idx}"  # 고유한 key 지정
                         )
                 st.write("---")
         else:
