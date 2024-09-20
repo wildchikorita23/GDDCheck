@@ -24,7 +24,7 @@ st.image("https://yt3.googleusercontent.com/K-3bx-q3srYXlCBGGqEMdSeHv2LfWTO_cxhf
 # HTML과 CSS를 이용해 제목을 꾸밈
 st.markdown(
     """
-    <style>
+   <style>
         .title {
             text-align: center;
             font-family: Arial, sans-serif;
