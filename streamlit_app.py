@@ -223,7 +223,7 @@ if uploaded_file is not None:
                         messages=[
                             {"role": "system", "content": evaluation_prompt},
                             {"role": "user", "content": {text[:4000]}}
-                            {"role": "assistant", "content": {"evaluation_criteria :["}
+                            {"role": "assistant", "content": "{evaluation_criteria :["}
                                
                             ]
                           )
