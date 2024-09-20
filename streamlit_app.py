@@ -129,8 +129,6 @@ if uploaded_file is not None:
                     st.pyplot(fig)
 
                 # 최신 예외 처리 방식 적용
-                except OpenAI.error.OpenAIError as e:
-                    st.error(f"OpenAI 관련 오류가 발생했습니다: {e}")
                 except Exception as e:
                     st.error(f"예기치 않은 오류가 발생했습니다: {e}")
 
