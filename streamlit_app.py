@@ -394,9 +394,7 @@ if uploaded_file is not None:
                     # 점수 추출 후 숫자만 남기기
                     scores = [int(re.search(r'\d+', score).group()) for score in scores]
 
-                    # 점수를 정확히 확인하고 출력
-                    st.write(f"추출된 점수: {scores}")
-                    st.write(f"개별 점수 합산: {sum(scores)}")
+                    
 
                     # 점수와 항목의 길이가 다를 경우 처리
                     if len(scores) != len(categories):
@@ -430,9 +428,6 @@ if uploaded_file is not None:
                         '점수': scores
                     })
 
-                    # 시각화
-                    st.write(f"**총합 점수: {total_score} / 100**")
-                   
 
                 # 새 평가 데이터 저장
                     feedback_data.append({
