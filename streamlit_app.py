@@ -175,6 +175,7 @@ if uploaded_file is not None:
                     # 프롬프트를 평가 기준을 포함하여 OpenAI API 호출
                     evaluation_prompt = f"""
 다음은 게임 기획서 평가 기준입니다. 각 평가 항목을 10점 만점으로 평가하고, 각 항목의 점수와 총합 점수를 출력해 주세요:
+'주제 선정: 8점, 창의력: 7점, 구성과 흐름: 9점, 가독성: 6점, 문장력과 맞춤법: 7점, 분석력: 8점, 논리력: 9점, 통찰력: 6점, 실무력: 8점, 시각적 구성 및 디자인: 7점'
 
 {evaluation_criteria_json}
 
@@ -201,11 +202,12 @@ if uploaded_file is not None:
                     scores = re.findall(r'(\d+)점', evaluation_text)
                     scores = list(map(int, scores))
 
-                    if len(scores) == len(categories):
-                        total_score = sum(scores)
-                    else:
+                    # 점수와 항목의 길이가 다를 경우 처리
+                    if len(scores) != len(categories):
                         st.warning("점수를 정확히 추출할 수 없습니다. 응답 형식을 확인해 주세요.")
-                        total_score = 0
+                        st.stop()
+
+                    total_score = sum(scores)
 
                     # 데이터프레임으로 평가 결과 정리
                     df = pd.DataFrame({
@@ -213,8 +215,7 @@ if uploaded_file is not None:
                         '점수': scores
                     })
 
-                   
-                   # 시각화
+                    # 시각화
                     st.write(f"**총합 점수: {total_score} / 100**")
                    
 
