@@ -41,7 +41,7 @@ st.markdown(
         .evaluation-card {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 20px;
+            padding: 5px;
             border-radius: 8px;
             margin-top: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
