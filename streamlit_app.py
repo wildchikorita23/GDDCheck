@@ -29,6 +29,18 @@ if os.path.exists(feedback_data_path):
 else:
     feedback_data = []
 
+# 평가 데이터 조회 버튼 추가
+if st.button("저장된 평가 데이터 보기"):
+    if feedback_data:
+        st.write("저장된 평가 데이터:")
+        for idx, feedback in enumerate(feedback_data, 1):
+            st.write(f"**평가 {idx}:**")
+            st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
+            st.write(f"**평가 내용:** {feedback['evaluation']}")
+            st.write("---")
+    else:
+        st.write("저장된 평가 데이터가 없습니다.")
+
 # 각 평가 항목 초기화
 categories = [
     "주제 선정", "창의력", "구성과 흐름", "가독성", "문장력과 맞춤법",
