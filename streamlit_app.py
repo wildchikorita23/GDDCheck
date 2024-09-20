@@ -33,17 +33,28 @@ except Exception as e:
     st.error(f"평가 데이터를 불러오는 중 오류가 발생했습니다: {e}")
     feedback_data = []
 
-# 평가 데이터 조회 버튼 추가
-if st.button("저장된 평가 데이터 보기"):
-    if feedback_data:
-        st.write("저장된 평가 데이터:")
-        for idx, feedback in enumerate(feedback_data, 1):
-            st.write(f"**평가 {idx}:**")
-            st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
-            st.write(f"**평가 내용:** {feedback['evaluation']}")
-            st.write("---")
-    else:
-        st.write("저장된 평가 데이터가 없습니다.")
+# 비밀번호 입력을 통한 접근 제어
+st.sidebar.write("관리자 전용 기능")
+password = st.sidebar.text_input("비밀번호를 입력하세요:", type="password")
+
+# 비밀번호 확인 (비밀번호는 필요에 따라 설정)
+if password == "I'minthestars":  # 여기에 원하는 비밀번호를 설정하세요.
+    st.sidebar.success("접근이 허용되었습니다.")
+    
+    # 평가 데이터 조회 버튼 추가 (관리자만 볼 수 있음)
+    if st.sidebar.button("저장된 평가 데이터 보기"):
+        if feedback_data:
+            st.write("저장된 평가 데이터:")
+            for idx, feedback in enumerate(feedback_data, 1):
+                st.write(f"**평가 {idx}:**")
+                st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
+                st.write(f"**평가 내용:** {feedback['evaluation']}")
+                st.write("---")
+        else:
+            st.write("저장된 평가 데이터가 없습니다.")
+else:
+    st.sidebar.warning("올바른 비밀번호를 입력하세요.")
+
 
 # 각 평가 항목 초기화
 categories = [
