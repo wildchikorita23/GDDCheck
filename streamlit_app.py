@@ -90,7 +90,7 @@ if uploaded_file is not None:
 이 기준을 사용해 다음 기획서를 평가해 주세요:
 
  
- 
+ "output_example" :{ 
    "evaluation_criteria": [
     {
       "name": "주제 선정",
@@ -215,7 +215,7 @@ if uploaded_file is not None:
       ]
     }
   ]
-
+ }
 evaluation_criteria_json = json.dumps(evaluation_criteria, ensure_ascii=False, indent=4)
 """
 
