@@ -405,6 +405,25 @@ if uploaded_file is not None:
 
                     total_score = sum(scores)
 
+                     # HTML로 시각화하여 점수와 항목 출력
+                    st.markdown(
+                        f"""
+                        <table class="score-table">
+                            <thead>
+                                <tr>
+                                    <th>항목</th>
+                                    <th>점수</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {''.join(f"<tr><td>{category}</td><td>{score}</td></tr>" for category, score in zip(categories, scores))}
+                            </tbody>
+                        </table>
+                        <div class="total-score">총합 점수: {total_score} / 100</div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+
                     # 데이터프레임으로 평가 결과 정리
                     df = pd.DataFrame({
                         '항목': categories,
