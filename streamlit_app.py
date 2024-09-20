@@ -154,6 +154,16 @@ if password == adminpassword:
                 st.write("---")
         else:
             st.write("저장된 평가 데이터가 없습니다.")
+
+   # 평가 데이터 초기화 버튼 추가
+    if st.sidebar.button("평가 데이터 초기화"):
+        if os.path.exists(feedback_data_path):
+            os.remove(feedback_data_path)  # JSON 파일 삭제로 초기화
+            feedback_data = []  # 메모리상의 데이터도 초기화
+            st.success("평가 데이터가 초기화되었습니다.")
+        else:
+            st.warning("초기화할 평가 데이터가 없습니다.")
+
 else:
     st.sidebar.warning("올바른 비밀번호를 입력하세요.")
 
