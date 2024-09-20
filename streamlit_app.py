@@ -241,7 +241,11 @@ if uploaded_file is not None:
             # 평가 버튼
             if st.button("평가하기"):
                 try:
-                    # 프롬프트를 평가 기준을 포함하여 OpenAI API 호출
+                   # 평가 결과를 저장할 리스트 초기화
+                    all_evaluation_texts = []
+                   # 각 분할된 텍스트에 대해 평가 수행
+                    for split_text in split_texts:
+                   # 프롬프트를 평가 기준을 포함하여 OpenAI API 호출
                     evaluation_prompt = f"""
                     
 다음은 게임 기획서 평가 기준입니다. 각 평가 항목을 10점 만점으로 평가하고, 각 항목의 점수와 평가 멘트를 아래 형식으로 반환해 주세요:
