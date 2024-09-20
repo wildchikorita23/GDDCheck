@@ -30,6 +30,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# 유튜브 링크 추가
+youtube_link = "https://www.youtube.com/@gamedesigneryuriring"  
+st.markdown(
+    f"""
+    <div style="text-align:center; margin-top:10px;">
+        <a href="{youtube_link}" target="_blank" style="color:#E02F3A; font-size:18px; text-decoration:none;">
+            📺 유리링 유튜브
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # PDF 파일 업로드 받기
 uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
 
