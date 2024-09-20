@@ -43,7 +43,7 @@ st.markdown(
             border: 1px solid #ddd;
             padding: 5px;
             border-radius: 8px;
-            margin-top: 5px;
+            
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-size: 14px; /* 텍스트 크기 조절 */
             line-height: 1.6; /* 줄 간격 조절 */
