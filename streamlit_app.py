@@ -23,9 +23,7 @@ st.markdown(
     <h1 style="color:#AC58FA; text-align:center; font-family:Arial, sans-serif;">
         게임 기획서 평가 AI
     </h1>
-    <p style="text-align:center; color:#333; font-size:16px;">
-        게임 기획자 유리링 제작
-    </p>
+    
     """,
     unsafe_allow_html=True
 )
@@ -35,7 +33,7 @@ youtube_link = "https://www.youtube.com/@gamedesigneryuriring"
 st.markdown(
     f"""
     <div style="text-align:center; margin-top:10px;">
-        <a href="{youtube_link}" target="_blank" style="color:#E02F3A; font-size:18px; text-decoration:none;">
+        <a href="{youtube_link}" target="_blank" style="color:#8258FA; font-size:18px; text-decoration:none;">
             📺 유리링 유튜브
         </a>
     </div>
