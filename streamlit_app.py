@@ -20,7 +20,7 @@ st.image("https://yt3.googleusercontent.com/K-3bx-q3srYXlCBGGqEMdSeHv2LfWTO_cxhf
 # HTML과 CSS를 이용해 제목을 꾸밈
 st.markdown(
     """
-    <h1 style="color:#AC58FA; text-align:center; font-family:Arial, sans-serif;">
+    <h1 style="text-align:center; font-family:Arial, sans-serif;">
         게임 기획서 평가 AI
     </h1>
     
@@ -33,7 +33,7 @@ youtube_link = "https://www.youtube.com/@gamedesigneryuriring"
 st.markdown(
     f"""
     <div style="text-align:center; margin-top:10px;">
-        <a href="{youtube_link}" target="_blank" style="color:#8258FA; font-size:18px; text-decoration:none;">
+        <a href="{youtube_link}" target="_blank" font-size:18px; text-decoration:none;">
             📺 유리링 유튜브
         </a>
     </div>
