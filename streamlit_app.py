@@ -49,8 +49,7 @@ st.markdown(
             line-height: 1.6; /* 줄 간격 조절 */
         }
         .evaluation-card h3 {
-            color: white;
-            background-color: #4A90E2;
+            color: #4A90E2;            
             font-size: 18px;
         }
         
