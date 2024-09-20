@@ -20,8 +20,8 @@ st.image("https://via.placeholder.com/1200x300.png?text=Your+Banner+Here", use_c
 # HTML과 CSS를 이용해 제목을 꾸밈
 st.markdown(
     """
-    <h1 style="color:#4A90E2; text-align:center; font-family:Arial, sans-serif;">
-        OpenAI API를 이용한 게임 기획서 평가
+    <h1 style="color:#AC58FA; text-align:center; font-family:Arial, sans-serif;">
+        게임 기획서 평가 AI
     </h1>
     <p style="text-align:center; color:#333; font-size:16px;">
         게임 기획자 유리링 제작
