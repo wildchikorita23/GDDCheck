@@ -93,7 +93,7 @@ if uploaded_file is not None:
 """
 
                     response = client.chat.completions.create(
-                        model="gpt-4o-mini",
+                        model="gpt-4-turbo",
                         messages=[
                             {"role": "system", "content": "You are an expert in game design document evaluation."},
                             {"role": "user", "content": evaluation_prompt}
