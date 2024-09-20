@@ -1,14 +1,16 @@
 import streamlit as st
-import openai
+# import openai
+from openai import OpenAI
 import PyPDF2
 import pandas as pd
 import matplotlib.pyplot as plt
 
 # OpenAI API 키 설정
 try:
-    openai.api_key = st.secrets.openai.openai_api_key
+   api_key = st.secrets.openai.openai_api_key
 except KeyError:
     st.error("API 키가 설정되지 않았습니다. secrets.toml 파일을 확인하세요.")
+client = OpenAI(api_key=api_key)
 
 st.title("OpenAI API를 이용한 기획서 평가")
 
@@ -90,7 +92,7 @@ if uploaded_file is not None:
 {text[:4000]}
 """
 
-                    response = openai.ChatCompletion.create(
+                    response = client.chat.completions.create(
                         model="gpt-4o-mini",
                         messages=[
                             {"role": "system", "content": "You are an expert in game design document evaluation."},
