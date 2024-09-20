@@ -53,10 +53,7 @@ st.markdown(
             margin-bottom: 5px;
             font-size: 18px;
         }
-        .evaluation-card p {
-            line-height: 1.5;
-            margin: 5px 0; /* 공백 카드 생성을 방지 */
-        }
+        
         .total-score {
             background-color: #4A90E2;
             color: white;
