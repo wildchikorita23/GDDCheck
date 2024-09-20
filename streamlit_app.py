@@ -380,6 +380,8 @@ if uploaded_file is not None:
 이 기준을 사용해 다음 기획서를 평가해 주세요:
 {text[:4000]}
 
+평가 시 주어진 텍스트와 무관한 내용을 말하거나, 잘못된 정보를 생성하지 않도록 유의해 주세요.
+
 """
 
                     response = client.chat.completions.create(
