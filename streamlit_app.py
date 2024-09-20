@@ -89,8 +89,9 @@ if uploaded_file is not None:
 
 이 기준을 사용해 다음 기획서를 평가해 주세요:
 
-"output_example" :{
-  "evaluation_criteria": [
+ 
+evaluation_criteria = {
+   "evaluation_criteria": [
     {
       "name": "주제 선정",
       "evaluation_factors": [
