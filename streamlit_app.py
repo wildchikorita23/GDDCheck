@@ -198,9 +198,13 @@ if uploaded_file is not None:
                     st.write("평가 결과:")
                     st.write(evaluation_text)
                                         
-                     # 정규 표현식을 사용해 숫자 점수 추출
+                      # 정규 표현식을 사용해 숫자 점수 추출
                     scores = re.findall(r'(\d+)점', evaluation_text)
                     scores = list(map(int, scores))
+
+                    # 점수를 정확히 확인하고 출력
+                    st.write(f"추출된 점수: {scores}")
+                    st.write(f"개별 점수 합산: {sum(scores)}")
 
                     # 점수와 항목의 길이가 다를 경우 처리
                     if len(scores) != len(categories):
@@ -217,7 +221,6 @@ if uploaded_file is not None:
 
                     # 시각화
                     st.write(f"**총합 점수: {total_score} / 100**")
-                   
 
                 # 최신 예외 처리 방식 적용
                 except Exception as e:
