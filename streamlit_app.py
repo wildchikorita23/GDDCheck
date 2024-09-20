@@ -208,7 +208,12 @@ evaluation_criteria_json = json.dumps(evaluation_criteria, ensure_ascii=False, i
 # PDF 파일이 업로드되었을 때
 if uploaded_file is not None:
     try:
-        # PDF 파일의 내용을 읽기
+       # PDF 파일 저장
+        pdf_path = os.path.join(pdf_save_directory, uploaded_file.name)
+        with open(pdf_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+           
+       # PDF 파일의 내용을 읽기
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         text = ""
         for page in pdf_reader.pages:
@@ -221,6 +226,11 @@ if uploaded_file is not None:
             st.write("PDF 파일에서 추출한 텍스트:")
             st.text_area("기획서 내용", text[:2000], height=250)
 
+            # 텍스트가 너무 길면 나누기 위한 설정
+            max_length = 3500  # 모델에 전달할 텍스트의 최대 길이 설정
+            split_texts = [text[i:i + max_length] for i in range(0, len(text), max_length)]
+
+           
           # 이전 평가 데이터 검색
             related_feedback = [feedback for feedback in feedback_data if feedback["text"] in text]
             if related_feedback:
@@ -267,8 +277,12 @@ if uploaded_file is not None:
 
                     # 평가 결과 파싱
                     evaluation_text = response.choices[0].message.content.strip()
+                    all_evaluation_texts.append(evaluation_text)
+
+                    # 전체 평가 결과 출력
+                    full_evaluation_text = "\n\n".join(all_evaluation_texts)
                     st.write("평가 결과:")
-                    st.write(evaluation_text)
+                    st.write(full_evaluation_text)
                                         
                     # 정규 표현식을 사용해 숫자 점수 추출
                     # 항목 이름과 점수 사이의 패턴을 구체적으로 지정하여 추출
