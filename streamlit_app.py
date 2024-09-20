@@ -14,7 +14,21 @@ except KeyError:
     st.error("API 키가 설정되지 않았습니다. secrets.toml 파일을 확인하세요.")
 client = OpenAI(api_key=api_key)
 
-st.title("게임 기획자 유리링이 제공하는 게임 기획서 AI 평가")
+# 이미지 추가 (로고나 배너 이미지)
+st.image("https://via.placeholder.com/1200x300.png?text=Your+Banner+Here", use_column_width=True)
+
+# HTML과 CSS를 이용해 제목을 꾸밈
+st.markdown(
+    """
+    <h1 style="color:#4A90E2; text-align:center; font-family:Arial, sans-serif;">
+        OpenAI API를 이용한 게임 기획서 평가
+    </h1>
+    <p style="text-align:center; color:#333; font-size:16px;">
+        게임 기획자 유리링 제작
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 # PDF 파일 업로드 받기
 uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
