@@ -89,7 +89,7 @@ st.markdown(
         }
     </style>
     <h1 style="text-align:center; font-family:Arial, sans-serif;">
-        게임 기획서 평가 AI
+        게임 기획서 평가 AI (BETA)
     </h1>
     
     """,
