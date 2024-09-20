@@ -101,7 +101,7 @@ if uploaded_file is not None:
                     )
 
                     # 평가 결과 파싱
-                    evaluation_text = response.choices[0].message['content'].strip()
+                    evaluation_text = response.choices[0].message.content.strip()
                     st.write("평가 결과:")
                     st.write(evaluation_text)
 
