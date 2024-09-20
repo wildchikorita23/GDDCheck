@@ -21,6 +21,10 @@ uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", 
 
 # 평가 데이터를 저장할 경로 설정
 feedback_data_path = "feedback_data.json"
+pdf_save_directory = "uploaded_pdfs"
+
+# PDF 파일 저장 디렉토리 생성
+os.makedirs(pdf_save_directory, exist_ok=True)
 
 # 기존 피드백 데이터 불러오기
 try:
@@ -49,6 +53,16 @@ if password == "I'minthestars":  # 여기에 원하는 비밀번호를 설정하
                 st.write(f"**평가 {idx}:**")
                 st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
                 st.write(f"**평가 내용:** {feedback['evaluation']}")
+               # PDF 파일 다운로드 링크 제공
+                pdf_path = feedback.get('pdf_path', None)
+                if pdf_path and os.path.exists(pdf_path):
+                    with open(pdf_path, "rb") as pdf_file:
+                        st.download_button(
+                            label=f"PDF 다운로드 ({os.path.basename(pdf_path)})",
+                            data=pdf_file,
+                            file_name=os.path.basename(pdf_path),
+                            mime='application/pdf'
+                        )
                 st.write("---")
         else:
             st.write("저장된 평가 데이터가 없습니다.")
