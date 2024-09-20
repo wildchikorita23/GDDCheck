@@ -1,33 +1,48 @@
 import streamlit as st
-import os
+import openai
+import PyPDF2
 
-# 패키지가 설치되어 있지 않다면 설치하는 코드
-if 'openai' not in st.session_state:
-    st.session_state['openai'] = False
-    os.system('pip install openai')  # 패키지 설치 명령
+# OpenAI API 키 설정: secrets.toml 파일에서 API 키를 가져옵니다.
+openai.api_key = st.secrets["openai"]["openai_api_key"]
 
-# 이후에 openai를 임포트할 수 있도록 설정
-try:
-    import openai
-    st.session_state['openai'] = True
-except ModuleNotFoundError:
-    st.error("OpenAI 패키지 설치가 실패했습니다. 다시 시도해 주세요.")
+# 스트림릿 앱 제목 설정
+st.title("OpenAI API를 이용한 기획서 평가")
 
-# API 키 설정 및 스트림릿 앱 코드 작성
-if st.session_state['openai']:
-    openai.api_key = st.secrets["openai"]["openai_api_key"]
+# PDF 파일 업로드 받기
+uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
 
-    st.title("OpenAI API를 이용한 기획서 평가")
-    prompt = st.text_area("평가할 기획서 내용 입력", "")
+# PDF 파일이 업로드되었을 때
+if uploaded_file is not None:
+    try:
+        # PDF 파일의 내용을 읽기
+        pdf_reader = PyPDF2.PdfReader(uploaded_file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
 
-    if st.button("평가하기"):
-        if prompt:
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                prompt=prompt,
-                max_tokens=500,
-                temperature=0.7
-            )
-            st.write(response.choices[0].text.strip())
+        # 읽어온 텍스트가 없을 경우 처리
+        if not text.strip():
+            st.warning("PDF 파일에서 텍스트를 추출할 수 없습니다. 파일을 확인해 주세요.")
         else:
-            st.warning("기획서 내용을 입력해 주세요.")
+            # 추출된 텍스트를 OpenAI API로 평가하기
+            st.write("PDF 파일에서 추출한 텍스트:")
+            st.text_area("기획서 내용", text, height=250)
+
+            # 평가 버튼
+            if st.button("평가하기"):
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "You are an expert in game design document evaluation."},
+                        {"role": "user", "content": f"다음은 게임 기획서 내용입니다. 이 기획서를 평가해 주세요:\n\n{text}"}
+                    ],
+                    max_tokens=500,
+                    temperature=0.7
+                )
+                st.write("평가 결과:")
+                st.write(response.choices[0].message['content'].strip())
+
+    except Exception as e:
+        st.error(f"PDF 파일을 처리하는 중 오류가 발생했습니다: {e}")
+else:
+    st.info("PDF 파일을 업로드해 주세요.")
