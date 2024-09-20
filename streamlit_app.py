@@ -14,7 +14,7 @@ except KeyError:
     st.error("API 키가 설정되지 않았습니다. secrets.toml 파일을 확인하세요.")
 client = OpenAI(api_key=api_key)
 
-st.title("OpenAI API를 이용한 기획서 평가")
+st.title("게임 기획자 유리링이 제공하는 게임 기획서 AI 평가")
 
 # PDF 파일 업로드 받기
 uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
