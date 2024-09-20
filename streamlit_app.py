@@ -199,25 +199,10 @@ if uploaded_file is not None:
                     # 예시 데이터: 실제로는 AI의 평가 결과에서 각 항목별 점수를 추출해야 함
                     scores = [8, 7, 9, 6, 7, 8, 9, 6, 8, 7]  # 이 부분은 실제 결과에 따라 조정 필요
                     total_score = sum(scores)
-
-                    # 데이터프레임으로 평가 결과 정리
-                    df = pd.DataFrame({
-                        '항목': categories,
-                        '점수': scores
-                    })
-
+                    
                     # 시각화
                     st.write(f"**총합 점수: {total_score} / 100**")
-
-                    # 막대 그래프 그리기
-                    fig, ax = plt.subplots()
-                    df.plot(kind='bar', x='항목', y='점수', legend=False, ax=ax)
-                    plt.ylim(0, 10)
-                    plt.title('평가 항목별 점수')
-                    plt.xlabel('항목')
-                    plt.ylabel('점수')
-                    plt.xticks(rotation=45, ha='right')
-                    st.pyplot(fig)
+                    
 
                 # 최신 예외 처리 방식 적용
                 except Exception as e:
