@@ -313,15 +313,15 @@ if uploaded_file is not None:
                     st.write(f"**총합 점수: {total_score} / 100**")
                    
 
-                # 새로운 평가 데이터 저장
+                # 새 평가 데이터 저장
                     feedback_data.append({
                         "text": text[:1000],
                         "evaluation": full_evaluation_text,
                         "pdf_path": pdf_path  # PDF 파일 경로 저장
                     })
                    
-                   with open(feedback_data_path, 'w', encoding='utf-8') as file:
-                        json.dump(feedback_data, file, ensure_ascii=False, indent=4)               
+                    with open(feedback_data_path, 'w', encoding='utf-8') as file:
+                        json.dump(feedback_data, file, ensure_ascii=False, indent=4)          
                
                # 최신 예외 처리 방식 적용
                 except Exception as e:
