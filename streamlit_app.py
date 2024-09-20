@@ -1,9 +1,9 @@
 import streamlit as st
-# import openai
 from openai import OpenAI
 import PyPDF2
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 
 # OpenAI API 키 설정
 try:
