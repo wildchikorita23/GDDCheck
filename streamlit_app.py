@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # OpenAI API 키 설정
 try:
-    openai_api_key = st.secrets.openai.openai_api_key
+    openai.api_key = st.secrets.openai.openai_api_key
 except KeyError:
     st.error("API 키가 설정되지 않았습니다. secrets.toml 파일을 확인하세요.")
 
@@ -127,16 +127,18 @@ if uploaded_file is not None:
                     st.pyplot(fig)
 
                 # 최신 예외 처리 방식 적용
-                except openai.AuthenticationError:
-                    st.error("API 키가 잘못되었거나 권한이 없습니다. API 키를 확인하세요.")
-                except openai.RateLimitError:
-                    st.error("API 요청 한도를 초과했습니다. 요금제를 확인하세요.")
-                except openai.InvalidRequestError as e:
+                except openai.error.APIError as e:
+                    st.error(f"API 요청 중 오류가 발생했습니다: {e}")
+                except openai.error.RateLimitError as e:
+                    st.error(f"API 요청 한도를 초과했습니다: {e}")
+                except openai.error.AuthenticationError as e:
+                    st.error(f"인증 오류가 발생했습니다: {e}")
+                except openai.error.InvalidRequestError as e:
                     st.error(f"잘못된 요청입니다: {e}")
-                except openai.OpenAIError as e:
-                    st.error(f"API 요청 중 일반 오류가 발생했습니다: {e}")
+                except Exception as e:
+                    st.error(f"예기치 않은 오류가 발생했습니다: {e}")
 
     except Exception as e:
         st.error(f"PDF 파일을 처리하는 중 오류가 발생했습니다: {e}")
 else:
-    st
+    st.info("PDF 파일을 업로드해 주세요.")
