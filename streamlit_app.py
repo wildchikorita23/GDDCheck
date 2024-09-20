@@ -402,7 +402,7 @@ if uploaded_file is not None:
                         temperature=0.0,  # 응답을 결정적으로 만듦
                         top_p=0.1,  # 상위 백분율 제한으로 응답의 일관성 강화
                         messages=[
-                             {"role": "system", "content": "You are an expert in game design document evaluation."},
+                             {"role": "system", "content": "당신은 신입 게임 디자이너를 채용하고 싶어하는 면접관입니다. 냉철하고 까다롭게 기획서를 평가해 팀에 합류시킬만한 우수한 인재를 찾아야 합니다. 대략 10개의 기획서 중 가장 뛰어난 1개의 기획서 정도에만 합격 점수를 줄 것이며, 합격 커트라인은 대략 90점입니다."},
                              {"role": "user", "content": evaluation_prompt}
                                
                             ]
