@@ -18,6 +18,16 @@ st.title("OpenAI API를 이용한 기획서 평가")
 # PDF 파일 업로드 받기
 uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
 
+# 평가 데이터를 저장할 경로 설정
+feedback_data_path = "feedback_data.json"
+
+# 기존 피드백 데이터 불러오기
+if os.path.exists(feedback_data_path):
+    with open(feedback_data_path, 'r', encoding='utf-8') as file:
+        feedback_data = json.load(file)
+else:
+    feedback_data = []
+
 # 각 평가 항목 초기화
 categories = [
     "주제 선정", "창의력", "구성과 흐름", "가독성", "문장력과 맞춤법",
@@ -169,6 +179,13 @@ if uploaded_file is not None:
             st.write("PDF 파일에서 추출한 텍스트:")
             st.text_area("기획서 내용", text[:2000], height=250)
 
+          # 이전 평가 데이터 검색
+            related_feedback = [feedback for feedback in feedback_data if feedback["text"] in text]
+            if related_feedback:
+                st.write("이전에 유사하게 평가된 결과가 있습니다:")
+                for feedback in related_feedback:
+                    st.write(feedback["evaluation"])
+           
             # 평가 버튼
             if st.button("평가하기"):
                 try:
@@ -178,8 +195,11 @@ if uploaded_file is not None:
 다음은 게임 기획서 평가 기준입니다. 각 평가 항목을 10점 만점으로 평가하고, 각 항목의 점수와 평가 멘트를 아래 형식으로 반환해 주세요:
 
 예시: 
-'주제 선정: 8점 - 주제는 명확하고 독창적이나 일부 아이디어는 기존 게임에서 많이 본 구성입니다.'
-'창의력: 7점 - 창의적인 요소가 일부 있으나 전체적으로 평범한 수준입니다.'
+주제 선정 (8점) 
+주제는 명확하고 독창적이나 일부 아이디어는 기존 게임에서 많이 본 구성입니다.
+
+창의력 (7점) 
+창의적인 요소가 일부 있으나 전체적으로 평범한 수준입니다.
 
 각 항목에 대한 점수와 각각 5줄 이상의 평가 멘트를 반환해 주세요.
 
@@ -235,8 +255,14 @@ if uploaded_file is not None:
 
                     # 시각화
                     st.write(f"**총합 점수: {total_score} / 100**")
+                   
 
-                # 최신 예외 처리 방식 적용
+                # 새로운 평가 데이터 저장
+                    feedback_data.append({"text": text[:1000], "evaluation": evaluation_text})
+                    with open(feedback_data_path, 'w', encoding='utf-8') as file:
+                        json.dump(feedback_data, file, ensure_ascii=False, indent=4)               
+               
+               # 최신 예외 처리 방식 적용
                 except Exception as e:
                     st.error(f"예기치 않은 오류가 발생했습니다: {e}")
 
