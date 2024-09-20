@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import re
+import os
 
 # OpenAI API 키 설정
 try:
