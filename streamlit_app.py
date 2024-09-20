@@ -24,6 +24,64 @@ st.image("https://yt3.googleusercontent.com/K-3bx-q3srYXlCBGGqEMdSeHv2LfWTO_cxhf
 # HTML과 CSS를 이용해 제목을 꾸밈
 st.markdown(
     """
+    <style>
+        .title {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #4A90E2;
+            font-size: 36px;
+            margin-bottom: 0;
+        }
+        .subtitle {
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+            margin-top: 0;
+        }
+        .evaluation-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .evaluation-card h3 {
+            color: #4A90E2;
+            margin-bottom: 10px;
+        }
+        .evaluation-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .total-score {
+            background-color: #4A90E2;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .score-table th, .score-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .score-table th {
+            background-color: #4A90E2;
+            color: white;
+        }
+        .score-table tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+    </style>
     <h1 style="text-align:center; font-family:Arial, sans-serif;">
         게임 기획서 평가 AI
     </h1>
