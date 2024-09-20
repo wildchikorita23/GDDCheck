@@ -387,13 +387,17 @@ if uploaded_file is not None:
                     # 각 항목별로 평가를 나누어 출력
                     evaluation_lines = full_evaluation_text.split("\n")
                     current_category = None
+
+                    # 카테고리와 본문을 정확하게 구분하여 출력
                     for line in evaluation_lines:
-                        if any(category in line for category in categories):
+                        line = line.strip()
+                        # 카테고리 제목으로 인식될 수 있는 경우만 h3 적용
+                        if any(category + ":" in line for category in categories):
                             current_category = line
                             st.markdown(f'<div class="evaluation-card"><h3>{current_category}</h3></div>', unsafe_allow_html=True)
-                        else:
-                            if current_category:
-                                st.markdown(f'<div class="evaluation-card"><p>{line}</p></div>', unsafe_allow_html=True)
+                        elif line and current_category:
+                            st.markdown(f'<div class="evaluation-card"><p>{line}</p></div>', unsafe_allow_html=True)
+
 
 
                                         
