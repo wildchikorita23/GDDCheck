@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import json
 import re
 import os
+import uuid
 
 # OpenAI API 키 설정
 try:
@@ -66,8 +67,8 @@ except Exception as e:
 st.sidebar.write("관리자 전용 기능")
 password = st.sidebar.text_input("비밀번호를 입력하세요:", type="password")
 
-# 비밀번호 확인 (비밀번호는 필요에 따라 설정)
-if password == "I'minthestars":  # 여기에 원하는 비밀번호를 설정하세요.
+# 비밀번호 확인 
+if password == "I'minthestars": 
     st.sidebar.success("접근이 허용되었습니다.")
     
     # 평가 데이터 조회 버튼 추가 (관리자만 볼 수 있음)
@@ -236,8 +237,9 @@ evaluation_criteria_json = json.dumps(evaluation_criteria, ensure_ascii=False, i
 # PDF 파일이 업로드되었을 때
 if uploaded_file is not None:
     try:
-       # PDF 파일 저장
-        pdf_path = os.path.join(pdf_save_directory, uploaded_file.name)
+       # PDF 파일 저장 (UUID를 사용해 고유한 파일 이름 생성)
+        unique_filename = f"{uuid.uuid4()}_{uploaded_file.name}"
+        pdf_path = os.path.join(pdf_save_directory, unique_filename)
         with open(pdf_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
            
