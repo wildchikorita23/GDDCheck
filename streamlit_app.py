@@ -216,7 +216,7 @@ if uploaded_file is not None:
     }
   ]
 }
-
+evaluation_criteria_json = json.dumps(evaluation_criteria, ensure_ascii=False, indent=4)
 """
 
                     response = client.chat.completions.create(
