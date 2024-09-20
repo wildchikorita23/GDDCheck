@@ -23,10 +23,14 @@ uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", 
 feedback_data_path = "feedback_data.json"
 
 # 기존 피드백 데이터 불러오기
-if os.path.exists(feedback_data_path):
-    with open(feedback_data_path, 'r', encoding='utf-8') as file:
-        feedback_data = json.load(file)
-else:
+try:
+    if os.path.exists(feedback_data_path):
+        with open(feedback_data_path, 'r', encoding='utf-8') as file:
+            feedback_data = json.load(file)
+    else:
+        feedback_data = []
+except Exception as e:
+    st.error(f"평가 데이터를 불러오는 중 오류가 발생했습니다: {e}")
     feedback_data = []
 
 # 평가 데이터 조회 버튼 추가
