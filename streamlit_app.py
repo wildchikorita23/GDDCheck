@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # OpenAI API 키 설정
 try:
-    openai.api_key = st.secrets.API_KEY.OpenAI_API_Key
+    openai_api_key = st.secrets.API_KEY.OpenAI_API_Key
 except KeyError:
     st.error("API 키가 설정되지 않았습니다. secrets.toml 파일을 확인하세요.")
 
