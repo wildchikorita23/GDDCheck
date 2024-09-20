@@ -383,8 +383,8 @@ if uploaded_file is not None:
 
                     # 전체 평가 결과 출력
                     full_evaluation_text = "\n\n".join(all_evaluation_texts)
-                    st.write("평가 결과:")
-                    st.write(full_evaluation_text)
+                    st.markdown(f'<div class="evaluation-card"><h3>평가 결과</h3><p>{full_evaluation_text}</p></div>', unsafe_allow_html=True)
+
                                         
                     # 정규 표현식을 사용해 숫자 점수 추출
                     # 항목 이름과 점수 사이의 패턴을 구체적으로 지정하여 추출
