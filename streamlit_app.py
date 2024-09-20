@@ -15,7 +15,7 @@ except KeyError:
 client = OpenAI(api_key=api_key)
 
 # 이미지 추가 (로고나 배너 이미지)
-st.image("https://via.placeholder.com/1200x300.png?text=Your+Banner+Here", use_column_width=True)
+st.image("https://yt3.googleusercontent.com/K-3bx-q3srYXlCBGGqEMdSeHv2LfWTO_cxhfKhG1X0VcFfb_JoxxWJ3M1KdB7Ug9qVmnUcvuRw=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj", use_column_width=True)
 
 # HTML과 CSS를 이용해 제목을 꾸밈
 st.markdown(
