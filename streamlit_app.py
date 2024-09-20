@@ -243,6 +243,13 @@ if uploaded_file is not None:
         with open(pdf_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
            
+       # 파일이 실제로 저장되는지 확인
+        with open(pdf_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+        if not os.path.exists(pdf_path):
+            st.error("파일이 서버에 제대로 저장되지 않았습니다. 다시 시도해 주세요.")
+            st.stop()
+       
        # PDF 파일의 내용을 읽기
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         text = ""
