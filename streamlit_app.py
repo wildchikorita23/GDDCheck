@@ -222,7 +222,7 @@ if uploaded_file is not None:
                         model="gpt-4o-mini",
                         messages=[
                             {"role": "system", "content": evaluation_prompt},
-                            {"role": "user", "content": {text[:4000]}}
+                            {"role": "user", "content": text[:4000]}
                             {"role": "assistant", "content": "{\"evaluation_criteria\" :["}
                                
                             ]
