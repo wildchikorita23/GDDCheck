@@ -174,8 +174,13 @@ if uploaded_file is not None:
                 try:
                     # 프롬프트를 평가 기준을 포함하여 OpenAI API 호출
                     evaluation_prompt = f"""
-다음은 게임 기획서 평가 기준입니다. 각 평가 항목을 10점 만점으로 평가하고, 각 항목의 점수와 총합 점수를 출력해 주세요:
-'주제 선정: 8점, 창의력: 7점, 구성과 흐름: 9점, 가독성: 6점, 문장력과 맞춤법: 7점, 분석력: 8점, 논리력: 9점, 통찰력: 6점, 실무력: 8점, 시각적 구성 및 디자인: 7점'
+                    
+다음은 게임 기획서 평가 기준입니다. 각 평가 항목을 10점 만점으로 평가하고, 각 항목의 점수와 총합 점수를 아래 형식으로 정확히 반환해 주세요:
+
+예시: '주제 선정: 8점, 창의력: 7점, 구성과 흐름: 9점, 가독성: 6점, 문장력과 맞춤법: 7점, 분석력: 8점, 논리력: 9점, 통찰력: 6점, 실무력: 8점, 시각적 구성 및 디자인: 7점'
+
+각 항목에 대한 점수를 숫자로만 반환하고, "점"이라는 단어를 포함하여 명확하게 표시해 주세요.
+
 
 {evaluation_criteria_json}
 
@@ -198,9 +203,13 @@ if uploaded_file is not None:
                     st.write("평가 결과:")
                     st.write(evaluation_text)
                                         
-                      # 정규 표현식을 사용해 숫자 점수 추출
-                    scores = re.findall(r'(\d+)점', evaluation_text)
-                    scores = list(map(int, scores))
+                    # 정규 표현식을 사용해 숫자 점수 추출
+                    # 항목 이름과 점수 사이의 패턴을 구체적으로 지정하여 추출
+                    score_pattern = r'(\b주제 선정: \d+점|\b창의력: \d+점|\b구성과 흐름: \d+점|\b가독성: \d+점|\b문장력과 맞춤법: \d+점|\b분석력: \d+점|\b논리력: \d+점|\b통찰력: \d+점|\b실무력: \d+점|\b시각적 구성 및 디자인: \d+점)'
+                    scores = re.findall(score_pattern, evaluation_text)
+
+                    # 점수 추출 후 숫자만 남기기
+                    scores = [int(re.search(r'\d+', score).group()) for score in scores]
 
                     # 점수를 정확히 확인하고 출력
                     st.write(f"추출된 점수: {scores}")
