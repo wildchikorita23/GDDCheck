@@ -9,8 +9,7 @@ import os
 import uuid
 
 #관리자
-try:
-   password = st.secrets.security.password
+password = st.secrets.security.password
 
 # OpenAI API 키 설정
 try:
