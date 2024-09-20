@@ -31,7 +31,7 @@ if uploaded_file is not None:
             if st.button("평가하기"):
                 try:
                     response = openai.ChatCompletion.create(
-                        model="gpt-4-turbo",
+                        model="gpt-4o-mini",
                         messages=[
                             {"role": "system", "content": "You are an expert in game design document evaluation."},
                             {"role": "user", "content": f"다음은 기획서 내용입니다. 평가해 주세요:\n\n{text[:4000]}"}
