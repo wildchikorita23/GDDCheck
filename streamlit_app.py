@@ -126,7 +126,7 @@ if uploaded_file is not None:
                     plt.xticks(rotation=45, ha='right')
                     st.pyplot(fig)
 
-                # 올바른 예외 처리 방식 적용
+                # 최신 예외 처리 방식
                 except openai.error.AuthenticationError:
                     st.error("API 키가 잘못되었거나 권한이 없습니다. API 키를 확인하세요.")
                 except openai.error.RateLimitError:
@@ -136,7 +136,4 @@ if uploaded_file is not None:
                 except openai.error.OpenAIError as e:
                     st.error(f"API 요청 중 일반 오류가 발생했습니다: {e}")
 
-    except Exception as e:
-        st.error(f"PDF 파일을 처리하는 중 오류가 발생했습니다: {e}")
-else:
-    st.info("PDF 파일을 업로드해 주세요.")
+    except
