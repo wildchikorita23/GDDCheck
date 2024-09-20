@@ -4,6 +4,7 @@ import PyPDF2
 import pandas as pd
 import matplotlib.pyplot as plt
 import json
+import re
 
 # OpenAI API 키 설정
 try:
@@ -195,12 +196,25 @@ if uploaded_file is not None:
                     evaluation_text = response.choices[0].message.content.strip()
                     st.write("평가 결과:")
                     st.write(evaluation_text)
-
-                    # 예시 데이터: 실제로는 AI의 평가 결과에서 각 항목별 점수를 추출해야 함
-                    scores = [8, 7, 9, 6, 7, 8, 9, 6, 8, 7]  # 이 부분은 실제 결과에 따라 조정 필요
-                    total_score = sum(scores)
                                         
-                    # 시각화
+                     # 정규 표현식을 사용해 숫자 점수 추출
+                    scores = re.findall(r'(\d+)점', evaluation_text)
+                    scores = list(map(int, scores))
+
+                    if len(scores) == len(categories):
+                        total_score = sum(scores)
+                    else:
+                        st.warning("점수를 정확히 추출할 수 없습니다. 응답 형식을 확인해 주세요.")
+                        total_score = 0
+
+                    # 데이터프레임으로 평가 결과 정리
+                    df = pd.DataFrame({
+                        '항목': categories,
+                        '점수': scores
+                    })
+
+                   
+                   # 시각화
                     st.write(f"**총합 점수: {total_score} / 100**")
                    
 
