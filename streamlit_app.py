@@ -383,7 +383,18 @@ if uploaded_file is not None:
 
                     # 전체 평가 결과 출력
                     full_evaluation_text = "\n\n".join(all_evaluation_texts)
-                    st.markdown(f'<div class="evaluation-card"><h3>평가 결과</h3><p>{full_evaluation_text}</p></div>', unsafe_allow_html=True)
+                    
+                    # 각 항목별로 평가를 나누어 출력
+                    evaluation_lines = full_evaluation_text.split("\n")
+                    current_category = None
+                    for line in evaluation_lines:
+                        if any(category in line for category in categories):
+                            current_category = line
+                            st.markdown(f'<div class="evaluation-card"><h3>{current_category}</h3></div>', unsafe_allow_html=True)
+                        else:
+                            if current_category:
+                                st.markdown(f'<div class="evaluation-card"><p>{line}</p></div>', unsafe_allow_html=True)
+
 
                                         
                     # 정규 표현식을 사용해 숫자 점수 추출
