@@ -71,7 +71,7 @@ st.sidebar.write("관리자 전용 기능")
 password = st.sidebar.text_input("비밀번호를 입력하세요:", type="password")
 
 # 비밀번호 확인 
-if password == password 
+if password == password:
     st.sidebar.success("접근이 허용되었습니다.")
     
     # 평가 데이터 조회 버튼 추가 (관리자만 볼 수 있음)
