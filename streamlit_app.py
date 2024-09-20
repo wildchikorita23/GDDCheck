@@ -191,6 +191,8 @@ if uploaded_file is not None:
 
                     response = client.chat.completions.create(
                         model="gpt-4o-mini",
+                        temperature=0.0,  # 응답을 결정적으로 만듦
+                        top_p=0.1,  # 상위 백분율 제한으로 응답의 일관성 강화
                         messages=[
                              {"role": "system", "content": "You are an expert in game design document evaluation."},
                              {"role": "user", "content": evaluation_prompt}
