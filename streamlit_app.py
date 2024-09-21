@@ -175,7 +175,7 @@ else:
     st.sidebar.warning("올바른 비밀번호를 입력하세요.")
 
 # QR 코드 이미지 링크
-st.sidebar.qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
+qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
 # QR 코드 이미지 표시
 st.markdown(
     f"""
