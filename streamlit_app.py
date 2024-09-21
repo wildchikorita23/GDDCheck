@@ -91,7 +91,7 @@ st.markdown(
     <h1 style="text-align:center; font-family:Arial, sans-serif;">
         게임 기획서 평가 AI (BETA)
     </h1>
-    <p> AI의 성능 문제로 부정확한 평가가 있을 수 있습니다.</p>
+    <p style="text-align:center; font-family:Arial, sans-serif;"> AI의 성능 문제로 부정확한 평가가 있을 수 있습니다.</p>
     """,
     unsafe_allow_html=True
 )
