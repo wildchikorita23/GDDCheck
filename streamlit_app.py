@@ -116,8 +116,6 @@ uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", 
 # 평가 데이터를 저장할 경로 설정
 feedback_data_path = "feedback_data.json"
 pdf_save_directory = "uploaded_pdfs"
-
-# PDF 파일 저장 디렉토리 생성
 os.makedirs(pdf_save_directory, exist_ok=True)
 
 # 기존 피드백 데이터 불러오기
@@ -148,12 +146,12 @@ if password == adminpassword:
                 st.write(f"**평가 {idx}:**")
                 st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
                 st.write(f"**평가 내용:** {feedback['evaluation']}")
-              # PDF 파일 다운로드 링크 제공 (고유한 key 추가)
+              
                 pdf_path = feedback.get('pdf_path', None)
                 if pdf_path and os.path.exists(pdf_path):
                     with open(pdf_path, "rb") as pdf_file:
                         st.download_button(
-                            label=f"PDF 다운로드 ({os.path.basename(pdf_path)})",
+                            label=f"PDF 로그({os.path.basename(pdf_path)})",
                             data=pdf_file,
                             file_name=os.path.basename(pdf_path),
                             mime='application/pdf',
@@ -332,21 +330,18 @@ evaluation_criteria_json = json.dumps(evaluation_criteria, ensure_ascii=False, i
 
 # PDF 파일이 업로드되었을 때
 if uploaded_file is not None:
-    try:
-       # PDF 파일 저장 (UUID를 사용해 고유한 파일 이름 생성)
+    try:       
         unique_filename = f"{uuid.uuid4()}_{uploaded_file.name}"
         pdf_path = os.path.join(pdf_save_directory, unique_filename)
         with open(pdf_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-           
-       # 파일이 실제로 저장되는지 확인
+            f.write(uploaded_file.getbuffer())           
+       
         with open(pdf_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         if not os.path.exists(pdf_path):
             st.error("파일이 서버에 제대로 저장되지 않았습니다. 다시 시도해 주세요.")
-            st.stop()
+            st.stop()       
        
-       # PDF 파일의 내용을 읽기
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         text = ""
         for page in pdf_reader.pages:
@@ -573,7 +568,7 @@ if uploaded_file is not None:
                     feedback_data.append({
                         "text": text[:1000],
                         "evaluation": full_evaluation_text,
-                        "pdf_path": pdf_path  # PDF 파일 경로 저장
+                        "pdf_path": pdf_path  
                     })
                    
                     with open(feedback_data_path, 'w', encoding='utf-8') as file:
