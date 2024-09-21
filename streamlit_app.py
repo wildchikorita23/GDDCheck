@@ -528,7 +528,9 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
 
                     total_score = sum(scores)
 
-                     # HTML로 시각화하여 점수와 항목 출력
+                    # HTML로 시각화하여 점수와 항목 출력
+                    if 'score_displayed' not in st.session_state:
+                    st.session_state['score_displayed'] = True
                     st.markdown(
                         f"""
                         <table class="score-table">
