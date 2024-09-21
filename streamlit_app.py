@@ -555,16 +555,16 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
                     })
 
               # QR 코드 이미지 링크
-                  qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
-                  st.markdown(
-                      f"""
-                      <div style="text-align:center; margin-top:20px;">
-                          <img src="{qr_code_link}" alt="Donate QR Code" style="width:150px;"/>
+                    qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
+                    st.markdown(
+                        f"""
+                        <div style="text-align:center; margin-top:20px;">
+                        <img src="{qr_code_link}" alt="Donate QR Code" style="width:150px;"/>
                           <p>여러분의 기부가 이 서비스를 유지하고 발전시키는 데 큰 도움이 됩니다♡</p>
-                      </div>
-                      """,
-                      unsafe_allow_html=True
-                  )
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
                
 
                 # 새 평가 데이터 저장
