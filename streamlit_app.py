@@ -119,7 +119,6 @@ feedback_data_path = "feedback_data.json"
 pdf_save_directory = "uploaded_pdfs"
 os.makedirs(pdf_save_directory, exist_ok=True)
 
-# 기존 피드백 데이터 불러오기
 try:
     if os.path.exists(feedback_data_path):
         with open(feedback_data_path, 'r', encoding='utf-8') as file:
@@ -143,7 +142,7 @@ if password == adminpassword:
             st.write("로그:")
             for idx, feedback in enumerate(feedback_data, 1):
                 st.write(f"**평가 {idx}:**")
-                st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
+                st.write(f"**텍스트:** {feedback['text'][:200]}...") 
                 st.write(f"**평가 내용:** {feedback['evaluation']}")
               
                 pdf_path = feedback.get('pdf_path', None)
