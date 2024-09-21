@@ -91,7 +91,7 @@ st.markdown(
     <h1 style="text-align:center; font-family:Arial, sans-serif;">
         게임 기획서 평가 AI (BETA)
     </h1>
-    <p> AI의 성능 문제로 부정확한 평가가 있을 수 있습니다. 평가 결과는 관리자인 유리링에게도 전달되며, 이는 프롬프트를 발전시키는 데 활용될 수 있습니다</p>
+    <p> AI의 성능 문제로 부정확한 평가가 있을 수 있습니다.</p>
     """,
     unsafe_allow_html=True
 )
