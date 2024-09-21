@@ -130,6 +130,20 @@ except Exception as e:
     st.error(f"평가 데이터를 불러오는 중 오류가 발생했습니다: {e}")
     feedback_data = []
 
+# QR 코드 이미지 링크
+qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
+# QR 코드 이미지 표시
+st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <img src="{qr_code_link}" alt="Donate QR Code" style="width:200px;"/>
+        <p>본 서비스는 사용할 때 마다 유리링의 지갑에서 비용이 빠져 나가는 유료 API를 활용하고 있습니다. 여러분의 기부가 이 서비스를 유지하고 발전시키는 데 큰 도움이 됩니다.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # 비밀번호 입력을 통한 접근 제어
 st.sidebar.write("관리자 전용 기능")
 password = st.sidebar.text_input("비밀번호를 입력하세요:", type="password")
@@ -549,20 +563,7 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
                         '항목': categories,
                         '점수': scores
                     })
-
-
-                 # QR 코드 이미지 링크
-                  qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
-                 # QR 코드 이미지 표시
-                  st.markdown(
-                      f"""
-                      <div style="text-align:center;">
-                          <img src="{qr_code_link}" alt="Donate QR Code" style="width:200px;"/>
-                          <p>본 서비스는 사용할 때 마다 유리링의 지갑에서 비용이 빠져 나가는 유료 API를 활용하고 있습니다. 여러분의 기부가 이 서비스를 유지하고 발전시키는 데 큰 도움이 됩니다.</p>
-                      </div>
-                      """,
-                      unsafe_allow_html=True
-                  )
+                
 
 
                 # 새 평가 데이터 저장
