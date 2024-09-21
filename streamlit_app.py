@@ -547,13 +547,6 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
                         unsafe_allow_html=True
                     )
 
-                                       
-                    # 데이터프레임으로 평가 결과 정리
-                    df = pd.DataFrame({
-                        '항목': categories,
-                        '점수': scores
-                    })
-                    
                     # QR 코드 이미지 링크
                     qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
                     # QR 코드 이미지 표시
@@ -566,6 +559,14 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
                          """,
                          unsafe_allow_html=True
                      )
+
+                                       
+                    # 데이터프레임으로 평가 결과 정리
+                    df = pd.DataFrame({
+                        '항목': categories,
+                        '점수': scores
+                    })
+                                       
                
 
                 # 새 평가 데이터 저장
