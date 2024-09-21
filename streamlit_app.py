@@ -555,7 +555,7 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
                     })
 
               # QR 코드 이미지 링크
-              qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
+                  qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
                   st.markdown(
                       f"""
                       <div style="text-align:center; margin-top:20px;">
