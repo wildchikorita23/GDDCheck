@@ -137,12 +137,10 @@ password = st.sidebar.text_input("비밀번호를 입력하세요:", type="passw
 
 # 비밀번호 확인 
 if password == adminpassword:
-    st.sidebar.success("접근이 허용되었습니다.")
-    
-    # 평가 데이터 조회 버튼 추가 (관리자만 볼 수 있음)
-    if st.sidebar.button("저장된 평가 데이터 보기"):
+    st.sidebar.success("접근이 허용되었습니다.")      
+    if st.sidebar.button("내 로그 보기"):
         if feedback_data:
-            st.write("저장된 평가 데이터:")
+            st.write("로그:")
             for idx, feedback in enumerate(feedback_data, 1):
                 st.write(f"**평가 {idx}:**")
                 st.write(f"**텍스트:** {feedback['text'][:200]}...")  # 길이가 긴 텍스트는 일부만 표시
@@ -152,7 +150,7 @@ if password == adminpassword:
                 if pdf_path and os.path.exists(pdf_path):
                     with open(pdf_path, "rb") as pdf_file:
                         st.download_button(
-                            label=f"PDF 로그({os.path.basename(pdf_path)})",
+                            label=f"로그({os.path.basename(pdf_path)})",
                             data=pdf_file,
                             file_name=os.path.basename(pdf_path),
                             mime='application/pdf',
