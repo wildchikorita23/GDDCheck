@@ -109,6 +109,20 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# QR 코드 이미지 링크
+qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
+# QR 코드 이미지 표시
+st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <img src="{qr_code_link}" alt="Donate QR Code" style="width:150px;"/>
+        <p>여러분의 기부가 이 서비스를 유지하고 발전시키는 데 큰 도움이 됩니다♡</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # PDF 파일 업로드 받기
 uploaded_file = st.file_uploader("기획서 PDF 파일을 업로드하세요.", type="pdf")
 
@@ -574,17 +588,5 @@ evaluation_criteria에 있는 텍스트를 평가 결과를 작성할 때 인용
 else:
     st.info("PDF 파일을 업로드해 주세요.")
 
-    # QR 코드 이미지 링크
-      qr_code_link = "https://i.postimg.cc/gJkt10sM/yuriringqr.png"
-      # QR 코드 이미지 표시
-      st.markdown(
-          f"""
-          <div style="text-align:center;">
-              <img src="{qr_code_link}" alt="Donate QR Code" style="width:150px;"/>
-              <p>여러분의 기부가 이 서비스를 유지하고 발전시키는 데 큰 도움이 됩니다♡</p>
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
+    
 
