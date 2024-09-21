@@ -347,16 +347,7 @@ if uploaded_file is not None:
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         text = ""
         for page in pdf_reader.pages:
-            text += page.extract_text()
-
-      # 텍스트 분할을 문단 단위로 시도
-      split_texts = text.split('\n\n')  # 줄바꿈을 기준으로 분할
-      split_texts = [t for t in split_texts if len(t) > 50]  # 너무 짧은 부분 제거
-
-      # 이후 split_texts를 순차적으로 모델에 전달하여 평가
-      for split_text in split_texts:
-          evaluation_prompt = f"""<프롬프트 내용> {split_text}"""
-          # 모델 호출 및 평가 수행
+            text += page.extract_text()      
 
         # 읽어온 텍스트가 없을 경우 처리
         if not text.strip():
@@ -368,6 +359,15 @@ if uploaded_file is not None:
             # 텍스트가 너무 길면 나누기 위한 설정
             max_length = 16000  # 모델에 전달할 텍스트의 최대 길이 설정
             split_texts = [text[i:i + max_length] for i in range(0, len(text), max_length)]
+
+            # 텍스트 분할을 문단 단위로 시도
+            split_texts = text.split('\n\n')  
+            split_texts = [t for t in split_texts if len(t) > 50] 
+
+            # 이후 split_texts를 순차적으로 모델에 전달하여 평가
+            for split_text in split_texts:
+                evaluation_prompt = f"""<프롬프트 내용> {split_text}"""
+                # 모델 호출 및 평가 수행
 
            
           # 이전 평가 데이터 검색
